@@ -1,5 +1,7 @@
 import React from 'react'
 import { FeaturedProduct } from './components/FeaturedProduct'
+import { Testinomial } from './components/Testinomial'
+import { QuestionMind } from './components/QuestionMind'
 
 export const Home = () => {
   return (
@@ -11,6 +13,10 @@ export const Home = () => {
         </section>
      
         <FeaturedProduct/>
+
+        <Testinomial />
+
+        <QuestionMind/>
            
     </>
 

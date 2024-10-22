@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 export const Testinomial = () => {
   return (
@@ -13,7 +13,7 @@ export const Testinomial = () => {
             Very easy this was to integrate
           </h3>
           <p className="my-4 font-light">
-            If you care for your time, I hands down would go with this."
+            If you care for your time, I hands down would go with this.
           </p>
         </blockquote>
         <figcaption className="flex justify-center items-center space-x-3">
@@ -103,7 +103,8 @@ export const Testinomial = () => {
         </figcaption>
       </figure>
     </div>
-  </section>
+    </section>
+    
   
   )
 }
