@@ -4,7 +4,9 @@ import {
 
 } from "react-router-dom";
 
-import { Home } from "../pages";
+import { Home, PageNotFound, ProductsList } from "../pages";
+
+
 
 
 export const AllRoutes = () => {
@@ -12,6 +14,8 @@ export const AllRoutes = () => {
     <>
        <Routes>
            <Route path="/" element={<Home />} /> 
+           <Route path="/products" element={<ProductsList />} /> 
+           <Route path="*" element={<PageNotFound />} /> 
       </Routes>
     </>
  

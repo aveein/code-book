@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Search } from "../Sections/Search";
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
+
+  const [dropdown,setDropdown] = useState(false);
+  const [search,setSearch] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -15,6 +19,10 @@ export const Header = () => {
       document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
+
+  function hideDropdown(){
+    setDropdown(!dropdown)
+  }
   return (
     <header>
       <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -63,10 +71,10 @@ export const Header = () => {
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <span
-                  onClick={() => setDarkMode(!darkMode)}
+                  onClick={()=>setDarkMode(!darkMode)}
                   className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-gear-wide-connected"
                 ></span>
-                <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
+                <span onClick={()=>setSearch(!search)}  className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
                 <a className="text-gray-700 dark:text-white mr-5" href="/cart">
                   <span className="text-2xl bi bi-cart-fill relative">
                     <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
@@ -75,12 +83,12 @@ export const Header = () => {
                   </span>
                 </a>
                 <span
-                  onClick={() => alert("")}
+                  onClick={hideDropdown}
                   className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"
                 ></span>
-                <div
+              {dropdown &&  <div
                   id="dropdownAvatar"
-                  className="select-none	absolute top-10 right-0 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                  className="select-none 	absolute top-15 right-0 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 >
                 
                   <ul
@@ -89,7 +97,7 @@ export const Header = () => {
                   >
                     <li>
                       <Link
-                        onClick={() => alert("")}
+                        
                         to="/products"
                         className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
@@ -98,7 +106,7 @@ export const Header = () => {
                     </li>
                     <li>
                       <Link
-                        onClick={() => alert("")}
+                     
                         to="/dashboard"
                         className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
@@ -108,18 +116,21 @@ export const Header = () => {
                   </ul>
                   <div className="py-1">
                     <span
-                      onClick=""
                       className="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Log out
                     </span>
                   </div>
-                </div>
+                </div>}
+               
               </li>
             </ul>
           </div>
         </div>
       </nav>
+
+      {search && <Search /> }
+      
     </header>
   );
 };
